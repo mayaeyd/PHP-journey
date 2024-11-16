@@ -27,7 +27,6 @@ class LinkedList{
     }
 
     public function traverse(){
-        $vowel_count = 0;
         $result = [];
         $current_node = $this->head;
 
@@ -36,6 +35,7 @@ class LinkedList{
             //check if string
             if(is_string($current_node->data)){
                 $string=strtolower($current_node->data);
+                $vowel_count = 0;
                 for($i=0; $i<strlen($string); $i++){
                     $char = $string[$i];
 
@@ -48,11 +48,24 @@ class LinkedList{
                         break;
                     }
                 }
+            }else{
+                echo json_encode(['error'=>"Node's data is not a valid string"]);
             }
             $current_node = $current_node->next;
         }
         return json_encode(['Nodes with two vowels '=>$result]);
     }
 }
+
+$list = new LinkedList();
+$list->insert("tree");
+$list->insert("apple");
+$list->insert("dad");
+$list->insert("9dw");
+$list->insert("haudwdnceio");
+$list->insert('as rte');
+
+
+echo $list->traverse();
 
 ?>
