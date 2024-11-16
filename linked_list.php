@@ -1,13 +1,10 @@
 class Node{
- public $data;
- public $next;
+    public $data = NULL;
+    public $next = NULL;
 
- function set_data($data) {
-    $this->data = $data;
-  }
- function get_name() {
-    return $this->data;
-  }
+    public function __construct($data = NULL) {
+            $this->data = $data;
+        }
 
 }
 
@@ -18,7 +15,11 @@ class LinkedList{
         if($this->head = NULL){
             $this->head = $new_node;
         }else{
-            
+            $current_node = $this->head;
+            while($current_node->next !== NULL){
+                $current_node = $current_node->next;
+            }
+            $current_node= $new_node;
         }
     }
 }
