@@ -15,7 +15,7 @@ if(!is_string($string)){
 $clean_string = '';
 for($i=0;$i<strlen($string); $i++){
     $char=$string[$i];
-    if(($char>='A' && $char<='Z') || ($char>='a' && $char<='z')){
+    if(($char>='A' && $char<='Z') || ($char>='a' && $char<='z') || ($char>='0' && $char<='9')){
         $clean_string .= strtolower($char);
     }
 }
