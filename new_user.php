@@ -29,21 +29,24 @@ class User{
                 $has_LowerCase=false;
                 $has_SpecialChar=preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $this->password);
                 for($i=0;$i<strlen($this->password);$i++){
-                    if(ctype_upper($this->password[i])){
+                    if(ctype_upper($this->password[$i])){
                         $has_UpperCase=true;
                     }
 
-                    if(ctype_lower($this->password[i])){
+                    if(ctype_lower($this->password[$i])){
                         $has_LowerCase=true;
                     }
                 }
 
                 if($has_LowerCase && $has_UpperCase && $has_SpecialChar){
                     http_response_code(200);
-                    echo json_encode(['error'=>'this->password is valid']);
+                    echo json_encode(['success'=>'Password is valid']);
+                    exit;
                 }
                 else{
-                    echo json_encode(['error'=>'this->password has to have at least one lower case, upper case and special character']);
+                    http_response_code(400);
+                    echo json_encode(['error'=>'Password must include at least one lowercase, uppercase and special character']);
+                    exit;
                 }
             }
         }
