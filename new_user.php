@@ -21,8 +21,17 @@ class User{
         if(!is_string($password)){
             http_response_code(400);
             echo json_encode(['error'=>'password is not a valid string']);
+            exit;
         }else{
-            if()
+            if(strlen($password)<12){
+                http_response_code(400);
+                echo json_encode(['error'=>'password has less than 12 characters']);
+                exit;
+            }else{
+                for($i=0;$i<strlen($password);$i++){
+                    
+                }
+            }
         }
     }
 }
