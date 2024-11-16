@@ -27,7 +27,7 @@ class User{
             }else{
                 $has_UpperCase=false;
                 $has_LowerCase=false;
-                $has_SpecialChar=preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $this->password);
+                $has_SpecialChar=preg_match('/[\'^!£$%&*()}{@#~?><>,|=_+¬-]/', $password);
                 for($i=0;$i<strlen($password);$i++){
                     if(ctype_upper($password[$i])){
                         $has_UpperCase=true;
@@ -41,12 +41,10 @@ class User{
                 if($has_LowerCase && $has_UpperCase && $has_SpecialChar){
                     http_response_code(200);
                     echo json_encode(['success'=>'Password is valid']);
-                    exit;
                 }
                 else{
                     http_response_code(400);
                     echo json_encode(['error'=>'Password must include at least one lowercase, uppercase and special character']);
-                    exit;
                 }
             }
         }
@@ -56,19 +54,50 @@ class User{
         if(!is_string($email)){
             http_response_code(400);
             echo json_encode(['error'=>'Email is not a valid string']);
-            exit;
         }else{
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 http_response_code(400);
                 echo json_encode(['error' => 'Invalid email format']);
-                exit;
             } else {
                 http_response_code(200);
                 echo json_encode(['success' => 'Email is valid']);
-                exit;
             }
         }
     }
+
+    public function copy_with($new_email = NULL, $new_password = NULL) {
+        //check if the new values are null, then keep the old ones
+        $new_email = $new_email ?? $this->email;
+        $new_password = $new_password ?? $this->password;
+
+        return new User($new_email, $new_password);
+    }
 }
+
+$user = new User("test@example.com", "Password123!");
+
+// Updated email
+$new_user_email = $user->copy_with("newemail@example.com");
+
+// Updated password
+$new_user_password = $user->copy_with(null, "NewPassword123!");
+
+// Updated email and password
+$new_user_both = $user->copy_with("updated@example.com", "UpdatedPassword123!");
+
+if (isset($_GET['email']) && isset($_GET['password'])) {
+    $email = $_GET['email'];
+    $password = $_GET['password'];
+
+    $user = new User($email, $password);
+
+    $emailValidationResult = $user::validate_email($email);
+    echo json_encode($emailValidationResult);
+    
+    // Test password validation
+    $passwordValidationResult = $user::check_password($password);
+    echo json_encode($passwordValidationResult);
+}
+
 
 ?>
