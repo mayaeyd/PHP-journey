@@ -12,4 +12,11 @@ if(!is_string($string)){
     exit;
 }
 
+$clean_string = '';
+for($i=0;i<strlen($clean_string); i++){
+    if(($sring[i]>='A' && $string[i]<='Z') || ($sring[i]>='a' && $string[i]<='z')){
+        $clean_string .= strtolower($string[i]);
+    }
+}
+
 ?>
