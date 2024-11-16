@@ -45,6 +45,20 @@ function merge($left, $right) {
             $j++;
         }
     }
+
+    //add remaining numbers from left array
+    while($i<count($left)){
+        $result[]=$left[$i];
+        $i++;
+    }
+
+    //add remaining numbers from rigth array
+    while($j<count($right)){
+        $result[]=$right[$j];
+        $j++;
+    }
+
+    return $result;
 }
 
 ?>
