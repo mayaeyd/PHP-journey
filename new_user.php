@@ -28,8 +28,21 @@ class User{
                 echo json_encode(['error'=>'password has less than 12 characters']);
                 exit;
             }else{
+                $has_UpperCase=false;
+                $has_LowerCase=false;
+                $has_SpecialChar=false;
                 for($i=0;$i<strlen($password);$i++){
-                    
+                    if(ctype_upper($password[i])){
+                        $has_UpperCase=true;
+                    }
+
+                    if(ctype_lower($password[i])){
+                        $has_LowerCase=true;
+                    }
+
+                    if(preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $password)){
+                        $has_UpperCase=true;
+                    }
                 }
             }
         }
