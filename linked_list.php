@@ -10,6 +10,7 @@ class Node{
 
 class LinkedList{
     private $head = NULL;
+
     public function insert($data){
         $new_node = new Node($data);
         if($this->head = NULL){
@@ -20,6 +21,13 @@ class LinkedList{
                 $current_node = $current_node->next;
             }
             $current_node= $new_node;
+        }
+    }
+
+    public function traverse(){
+        $current_node = $this->head;
+        while($current_node->next !== NULL){
+            $current_node = $current_node->next;
         }
     }
 }
