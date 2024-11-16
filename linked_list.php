@@ -25,8 +25,18 @@ class LinkedList{
     }
 
     public function traverse(){
+        $vowel_count = 0;
         $current_node = $this->head;
         while($current_node->next !== NULL){
+            if(is_string($current_node->data)){
+                $string=strtolower($current_node->data)
+                for($i=0; $i<strlen($string); $i++){
+                    $char = $string[$i];
+                    if($char = 'a' || $char = 'e' || $char = 'i' || $char = 'o' || $char = 'u'){
+                        $vowel_count++;
+                    }
+                }
+            }
             $current_node = $current_node->next;
         }
     }
