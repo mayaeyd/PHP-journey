@@ -12,6 +12,13 @@ class Node{
 }
 
 class LinkedList{
-    private $head;
-
+    private $head = NULL;
+    public function insert($data){
+        $new_node = new Node($data);
+        if($this->head = NULL){
+            $this->head = $new_node;
+        }else{
+            
+        }
+    }
 }
