@@ -13,9 +13,16 @@ if(!is_string($string)){
 }
 
 $clean_string = '';
-for($i=0;i<strlen($clean_string); i++){
-    if(($sring[i]>='A' && $string[i]<='Z') || ($sring[i]>='a' && $string[i]<='z')){
-        $clean_string .= strtolower($string[i]);
+for($i=0;$i<strlen($clean_string); $i++){
+    if(($sring[$i]>='A' && $string[$i]<='Z') || ($sring[$i]>='a' && $string[$i]<='z')){
+        $clean_string .= strtolower($string[$i]);
+    }
+}
+
+//check if palindrome
+for($i=0; $i<strlen($clean_string)/2; $i++){
+    if($clean_string[i]!== $clean_string[strlen($clean_string)-i-1]){
+        echo json_encode(['error'=>'String is not palindrome']);
     }
 }
 
