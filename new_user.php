@@ -17,12 +17,12 @@ class User{
     public function check_password(){
         if(!is_string($this->password)){
             http_response_code(400);
-            echo json_encode(['error'=>'this->password is not a valid string']);
+            echo json_encode(['error'=>'Password is not a valid string']);
             exit;
         }else{
             if(strlen($this->password)<12){
                 http_response_code(400);
-                echo json_encode(['error'=>'this->password has less than 12 characters']);
+                echo json_encode(['error'=>'Password has less than 12 characters']);
                 exit;
             }else{
                 $has_UpperCase=false;
@@ -49,6 +49,16 @@ class User{
                     exit;
                 }
             }
+        }
+    }
+
+    public function validate_email(){
+        if(!is_string($this->email)){
+            http_response_code(400);
+            echo json_encode(['error'=>'Email is not a valid string']);
+            exit;
+        }else{
+            
         }
     }
 }
