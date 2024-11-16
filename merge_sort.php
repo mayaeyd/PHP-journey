@@ -14,10 +14,17 @@ if(!is_array($array)){
 }
 
 function merge_sort($array){
+    if(count($array)<=1){
+        return $array;
+    }
+
     $middle = floor(count($array)/2);
 
     $left = array_slice($array, 0, $middle);
     $right = array_slice($array,$middle);
+
+    $left = merge_sort($left);
+    $right = merge_sort($right);
 }
 
 ?>
