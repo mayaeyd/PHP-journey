@@ -61,4 +61,10 @@ function merge($left, $right) {
     return $result;
 }
 
+//sort the input array using merge sort
+$sorted_array = merge_sort($array);
+
+http_response_code(200);
+echo json_encode(['sortedArray' => $sorted_array]);
+
 ?>
