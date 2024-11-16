@@ -27,7 +27,7 @@ class User{
             }else{
                 $has_UpperCase=false;
                 $has_LowerCase=false;
-                $has_SpecialChar=false;
+                $has_SpecialChar=preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $this->password);
                 for($i=0;$i<strlen($this->password);$i++){
                     if(ctype_upper($this->password[i])){
                         $has_UpperCase=true;
@@ -35,10 +35,6 @@ class User{
 
                     if(ctype_lower($this->password[i])){
                         $has_LowerCase=true;
-                    }
-
-                    if(preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $this->password)){
-                        $has_UpperCase=true;
                     }
                 }
 
